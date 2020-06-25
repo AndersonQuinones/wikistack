@@ -4,8 +4,12 @@ const db = new Sequelize("postgres://localhost:5432/wikistack", {
 });
 
 const Page = db.define("page", {
+  name:{
+    type: Sequelize.STRING,
+    allowNull: false
+  },
   title: {
-    type: Sequelize.STRING, // for shorter strings (< 256 chars)
+    type: Sequelize.STRING,
     allowNull: false
   },
   slug: {
@@ -18,8 +22,15 @@ const Page = db.define("page", {
   },
   status: {
     type: Sequelize.ENUM("open", "close")
+  },
+}
+, {
+  hooks: {
+    beforeValidate: function(page) {
+      page.slug= page.title.replace(/\s+/g, '_').replace(/\W/g, '')
+    }
   }
-});
+})
 
 const User = db.define("user", {
   name: {
@@ -30,13 +41,17 @@ const User = db.define("user", {
     type: Sequelize.STRING,
     allowNull: false,
     validate: {
-      isEmail: true
+      isEmail: true,
     }
   }
 });
+
+Page.belongsTo(User, { as: 'author' });
 
 module.exports = {
   db,
   Page,
   User
 };
+
+

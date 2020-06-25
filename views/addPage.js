@@ -14,7 +14,7 @@ module.exports = () =>
       </div>
 
       <div class="form-group">
-        <label for="title" class="col-sm-2 control-label">Email</label>
+        <label for="email" class="col-sm-2 control-label">Email</label>
         <div class="col-sm-10">
           <input id="email" name="email" type="email" class="form-control" />
         </div>
@@ -28,16 +28,6 @@ module.exports = () =>
       </div>
 
       <div class="form-group">
-        <label for="status" class="col-sm-2 control-label">Staus</label>
-        <div class="col-sm-10">
-          <select id="status" name="status" type="select" class="form-control">
-            <option value="open">open</option>
-            <option value="close">close</option>
-          </select>
-        </div>
-      </div>
-
-      <div class="form-group">
         <label for="content" class="col-sm-2 control-label">Page Content</label>
         <div class="col-sm-10">
           <input
@@ -46,6 +36,16 @@ module.exports = () =>
             type="text-area"
             class="form-control"
           />
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="status" class="col-sm-2 control-label">Status</label>
+        <div class="col-sm-10">
+          <select id="status" name="status" type="select" class="form-control">
+            <option value="open">open</option>
+            <option value="close">close</option>
+          </select>
         </div>
       </div>
 

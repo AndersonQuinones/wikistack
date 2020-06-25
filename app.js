@@ -8,8 +8,6 @@ const wiki = require("./routes/wiki");
 const app = express();
 
 //PLUG IN ROUTES
-app.use("/wiki", wiki);
-app.use("/user", user);
 
 //LOGGING MIDDLEWARE
 app.use(morgan("dev"));
@@ -18,7 +16,10 @@ app.use(morgan("dev"));
 app.use(express.static(__dirname + "/public"));
 
 //BODY PARSING MIDDLEWARE
+app.use(express.json())
 app.use(express.urlencoded({ extended: false }));
+app.use("/user", user);
+app.use("/wiki", wiki);
 
 app.get("/", (req, res, next) => {
   try {
